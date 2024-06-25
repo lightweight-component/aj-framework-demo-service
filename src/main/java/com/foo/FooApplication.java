@@ -1,7 +1,6 @@
 package com.foo;
 
-import com.ajaxjs.framework.embeded_tomcat.EmbeddedTomcatStarter;
-import com.ajaxjs.framework.embeded_tomcat.TomcatConfig;
+import com.ajaxjs.embeded_tomcat.EmbeddedTomcatStarter;
 import com.ajaxjs.framework.spring.BaseWebMvcConfigure;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
