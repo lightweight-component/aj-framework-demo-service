@@ -4,7 +4,6 @@ import com.ajaxjs.data.CRUD_Service;
 import com.ajaxjs.data.jdbc_helper.JdbcConn;
 import com.ajaxjs.data.jdbc_helper.JdbcReader;
 import com.ajaxjs.data.jdbc_helper.JdbcWriter;
-import com.ajaxjs.framework.embeded_tomcat.BaseWebMvcConfigure;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -13,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import com.ajaxjs.framework.spring.BaseWebMvcConfigure;
 
 import javax.sql.DataSource;
 
@@ -57,7 +57,7 @@ public class FooConfig implements WebMvcConfigurer {
 
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    CRUD_Service getCRUD_Service() {
+    CRUD_Service<?> getCRUD_Service() {
         CRUD_Service<?> crud = new CRUD_Service<>();
         crud.setReader(jdbcReader());
         crud.setWriter(jdbcWriter());

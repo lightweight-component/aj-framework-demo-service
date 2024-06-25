@@ -1,0 +1,5 @@
+server:
+  port: 8080 # 端口号
+  context-path: /bar  # 项目名，如果不设定，默认是 /
+  localFileUpload: # 是否支持本地文件上传
+  enable: false

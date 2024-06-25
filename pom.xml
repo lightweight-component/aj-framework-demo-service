@@ -49,6 +49,18 @@
     </profiles>
 
     <build>
+        <finalName>${project.name}</finalName>
+
+        <!-- 使用profiles指定资源加载位置 -->
+        <resources>
+            <resource>
+                <directory>${basedir}/src/profiles/${spring.profiles.active}</directory>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -62,14 +74,51 @@
                 </configuration>
             </plugin>
 
-            <!-- 复制 META-INF 目录 -->
+            <!-- 用于将依赖包拷贝到指定的位置 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.4.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-dependencies2</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <includeScope>system</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- 生成 META-INF/MANIFEST.MF 文件的部分内容 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.3.0</version>
                 <configuration>
                     <archive>
-                        <addMavenDescriptor>false</addMavenDescriptor><!-- 不让 Maven 打包时生成自己的描述文件 -->
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <!-- 这里是项目主类运行入口 -->
+                            <!--suppress UnresolvedMavenProperty -->
+                            <mainClass>${project.mainClass}</mainClass>
+                        </manifest>
                     </archive>
                 </configuration>
             </plugin>
