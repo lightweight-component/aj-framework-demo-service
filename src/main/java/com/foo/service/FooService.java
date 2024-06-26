@@ -1,6 +1,6 @@
 package com.foo.service;
 
-import com.ajaxjs.framework.spring.filter.dbconnection.IgnoreDataBaseConnect;
+import com.ajaxjs.framework.filter.dbconnection.IgnoreDataBaseConnect;
 import com.foo.controller.FooController;
 import com.foo.model.Foo;
 import lombok.extern.slf4j.Slf4j;

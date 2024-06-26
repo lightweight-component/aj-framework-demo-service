@@ -1,6 +1,5 @@
 package com.foo.controller;
 
-import com.ajaxjs.framework.spring.filter.dbconnection.IgnoreDataBaseConnect;
 import com.foo.model.Foo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
