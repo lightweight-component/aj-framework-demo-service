@@ -127,6 +127,12 @@
 
     <!-- 公共依赖 -->
     <dependencies>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.14.2.0</version>
+        </dependency>
+
         <!-- MySQL 数据库驱动 -->
         <dependency>
             <groupId>com.mysql</groupId>

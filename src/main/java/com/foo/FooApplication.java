@@ -11,6 +11,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan({"com.foo"})
 public class FooApplication extends BaseWebMvcConfigure {
     public static void main(String[] args) {
-        EmbeddedTomcatStarter.start(FooApplication.class);
+        EmbeddedTomcatStarter.start(FooApplication.class); // FooApplication 为配置类
     }
 }

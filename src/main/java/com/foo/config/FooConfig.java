@@ -14,6 +14,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 @Configuration
 @Slf4j
@@ -27,10 +31,10 @@ public class FooConfig implements WebMvcConfigurer {
     @Value("${db.psw}")
     private String psw;
 
-    @Bean(value = "dataSource", destroyMethod = "close")
-    DataSource getDs() {
-        return JdbcConn.setupMysqlJdbcPool(url, user, psw);
-    }
+//    @Bean(value = "dataSource", destroyMethod = "close")
+//    DataSource getDs() {
+//        return JdbcConn.setupMysqlJdbcPool(url, user, psw);
+//    }
 
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -52,6 +56,21 @@ public class FooConfig implements WebMvcConfigurer {
         log.info("get new connection-jdbcReader");
 
         return jdbcReader;
+    }
+
+    @Bean(value = "dataSource", destroyMethod = "close")
+    public DataSource dataSource() throws SQLException {
+        String jdbcStr = "jdbc:derby:C:\\Users\\zx\\Downloads\\db-derby-10.14.2.0-bin\\lib\\myDatabase;create=false";
+        DataSource dataSource = JdbcConn.setupJdbcPool("org.apache.derby.jdbc.EmbeddedDriver", jdbcStr, "", "");
+
+//        try (Connection conn = dataSource.getConnection()) {
+//            JdbcReader reader = new JdbcReader();
+//            reader.setConn(conn);
+//            List<Map<String, Object>> list = reader.queryAsMapList("SELECT * FROM Employees");
+//            System.out.println(list);
+//        }
+
+        return dataSource;
     }
 
 //    @Bean
