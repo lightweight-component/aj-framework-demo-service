@@ -34,27 +34,27 @@ public class FooConfig implements WebMvcConfigurer {
     @Value("${db.psw}")
     private String psw;
 
-    @Bean
-    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public JdbcWriter jdbcWriter() {
-        JdbcWriter jdbcWriter = new JdbcWriter();
-        jdbcWriter.setIdField("id");
-        jdbcWriter.setIsAutoIns(true);
-        jdbcWriter.setConn(JdbcConn.getConnection());
-        log.info("get new connection");
-
-        return jdbcWriter;
-    }
-
-    @Bean
-    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public JdbcReader jdbcReader() {
-        JdbcReader jdbcReader = new JdbcReader();
-        jdbcReader.setConn(JdbcConn.getConnection());
-        log.info("get new connection-jdbcReader");
-
-        return jdbcReader;
-    }
+//    @Bean
+//    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+//    public JdbcWriter jdbcWriter() {
+//        JdbcWriter jdbcWriter = new JdbcWriter();
+//        jdbcWriter.setIdField("id");
+//        jdbcWriter.setIsAutoIns(true);
+//        jdbcWriter.setConn(JdbcConn.getConnection());
+//        log.info("get new connection");
+//
+//        return jdbcWriter;
+//    }
+//
+//    @Bean
+//    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+//    public JdbcReader jdbcReader() {
+//        JdbcReader jdbcReader = new JdbcReader();
+//        jdbcReader.setConn(JdbcConn.getConnection());
+//        log.info("get new connection-jdbcReader");
+//
+//        return jdbcReader;
+//    }
 
     @Bean(value = "dataSource", destroyMethod = "close")
     public DataSource dataSource() throws SQLException {
