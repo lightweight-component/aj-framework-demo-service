@@ -63,12 +63,12 @@ public class FooConfig implements WebMvcConfigurer {
         String jdbcStr = "jdbc:derby:C:\\Users\\zx\\Downloads\\db-derby-10.14.2.0-bin\\lib\\myDatabase;create=false";
         DataSource dataSource = JdbcConn.setupJdbcPool("org.apache.derby.jdbc.EmbeddedDriver", jdbcStr, "", "");
 
-//        try (Connection conn = dataSource.getConnection()) {
-//            JdbcReader reader = new JdbcReader();
-//            reader.setConn(conn);
-//            List<Map<String, Object>> list = reader.queryAsMapList("SELECT * FROM Employees");
-//            System.out.println(list);
-//        }
+    //        try (Connection conn = dataSource.getConnection()) {
+    //            JdbcReader reader = new JdbcReader();
+    //            reader.setConn(conn);
+    //            List<Map<String, Object>> list = reader.queryAsMapList("SELECT * FROM Employees");
+    //            System.out.println(list);
+    //        }
 
         return dataSource;
     }
