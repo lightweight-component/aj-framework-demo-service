@@ -6,6 +6,10 @@ import com.ajaxjs.data.jdbc_helper.JdbcConn;
 import com.ajaxjs.data.jdbc_helper.JdbcReader;
 import com.ajaxjs.data.jdbc_helper.JdbcWriter;
 import com.ajaxjs.framework.BaseWebMvcConfigure;
+import com.ajaxjs.security.captcha.image.ICaptchaImageProvider;
+import com.ajaxjs.security.captcha.image.KaptchaImage;
+import com.ajaxjs.security.session.ISessionService;
+import com.ajaxjs.security.session.ServletSession;
 import com.foo.common.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -109,5 +113,15 @@ public class FooConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         BaseWebMvcConfigure.allowCrossDomain(registry);
+    }
+
+    @Bean
+    public ICaptchaImageProvider initCaptchaImageProvider() {
+        return new KaptchaImage();
+    }
+
+    @Bean
+    public ISessionService initSessionService() {
+        return new ServletSession();
     }
 }
